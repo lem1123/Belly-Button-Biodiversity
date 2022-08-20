@@ -1,0 +1,15 @@
+body{
+
+    backtround-color: blueviolet;
+}
+
+.jumbotron {
+    background-image: url("../images/bacteria_cells.jpg");
+    background-size: 100% 200%;
+    text-align: center;
+    color:yellow
+}
+
+div {
+    margin-bottom: 10px;
+}

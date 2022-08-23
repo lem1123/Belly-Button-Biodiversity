@@ -75,9 +75,11 @@ function buildCharts(sample) {
     // 9. Create the layout for the bar chart. 
       var barLayout = {
       title: "Top 10 Bacterial Species",
+      width: 450,
+      height: 400 
     };
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bar", [barData], barLayout);
+    Plotly.newPlot("bar", barData, barLayout);
     var bubbleOTUs = sampleOne.otu_ids
     // 1. Create the trace for the bubble chart.
     var bubbleData = [{
@@ -97,7 +99,7 @@ function buildCharts(sample) {
         title: "OTU ID#"},
     };
     // 3. Use Plotly to plot the data with the layout.
-    Plotly.newPlot("bubble", [bubbleData], bubbleLayout); 
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
     let metadata = data.metadata;
     let freqArray = metadata.filter(element => element.id == sample);
     let selectedFreq = freqArray[0];
@@ -106,7 +108,7 @@ function buildCharts(sample) {
     var gaugeData = [{
         value: washingFrequency,
         title: {
-          text: "Belly Button Washing Frequency<br>Scrubs Per Week",
+          text: "Belly Button Washing Frequency: Number of Scrubs Per Week",
           font: {size:14}},
         type: "indicator",
         mode: "gauge+number",
@@ -126,10 +128,11 @@ function buildCharts(sample) {
     
     // 5. Create the layout for the gauge chart.
       var gaugeLayout = { 
-          width: 600, height: 450, margin: {t: 0, b: 0}
+          width: 400,
+          height: 300
          };
     // 6. Use Plotly to plot the gauge data and layout.
-        Plotly.newPlot("gauge", [gaugeData], gaugeLayout);
+        Plotly.newPlot("gauge", gaugeData, gaugeLayout);
 
         });
 

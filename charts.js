@@ -75,11 +75,9 @@ function buildCharts(sample) {
     // 9. Create the layout for the bar chart. 
       var barLayout = {
       title: "Top 10 Bacterial Species",
-      width: 450,
-      height: 400 
     };
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bar", barData, barLayout);
+    Plotly.newPlot("bar", [barData], barLayout);
     var bubbleOTUs = sampleOne.otu_ids
     // 1. Create the trace for the bubble chart.
     var bubbleData = [{
@@ -89,7 +87,8 @@ function buildCharts(sample) {
       mode: "markers",
       marker: {
         color: bubbleOTUs,
-        colorscale: Purples
+        color: sampleValues
+      }
     }];
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
@@ -98,7 +97,7 @@ function buildCharts(sample) {
         title: "OTU ID#"},
     };
     // 3. Use Plotly to plot the data with the layout.
-    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
+    Plotly.newPlot("bubble", [bubbleData], bubbleLayout); 
     let metadata = data.metadata;
     let freqArray = metadata.filter(element => element.id == sample);
     let selectedFreq = freqArray[0];
@@ -106,7 +105,9 @@ function buildCharts(sample) {
     // 4. Create the trace for the gauge chart.
     var gaugeData = [{
         value: washingFrequency,
-        title: {text: "Belly Button Washing Frequency</b><br>Scrubs Per Week"},
+        title: {
+          text: "Belly Button Washing Frequency<br>Scrubs Per Week",
+          font: {size:14}},
         type: "indicator",
         mode: "gauge+number",
         gauge: {
@@ -117,7 +118,7 @@ function buildCharts(sample) {
                 {range: [2, 4], color: "aqua"},
                 {range: [4, 6], color: "yellow"},
                 {range: [6, 8], color: "cornflowerblue"},
-                {range: [8, 10], color: "mediumvioletred"}
+                {range: [8, 10], color: "mediumpurple"}
               ]
         }
 
@@ -125,20 +126,12 @@ function buildCharts(sample) {
     
     // 5. Create the layout for the gauge chart.
       var gaugeLayout = { 
-          autosize: true,
-          annotations: [{
-            xref: 'paper',
-            yref: 'paper'
-            x: 0.5,
-            xanchor: 'center',
-            y: 0,
-            yanchor: 'center',
-            showarrow: false
-          }]
-        };
+          width: 600, height: 450, margin: {t: 0, b: 0}
+         };
     // 6. Use Plotly to plot the gauge data and layout.
-        Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+        Plotly.newPlot("gauge", [gaugeData], gaugeLayout);
 
         });
 
   };
+    

@@ -89,8 +89,7 @@ function buildCharts(sample) {
       mode: "markers",
       marker: {
         color: bubbleOTUs,
-        color: sampleValues
-      }
+        colorscale: Purples
     }];
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
@@ -107,9 +106,7 @@ function buildCharts(sample) {
     // 4. Create the trace for the gauge chart.
     var gaugeData = [{
         value: washingFrequency,
-        title: {
-          text: "Belly Button Washing Frequency: Number of Scrubs Per Week",
-          font: {size:14}},
+        title: {text: "Belly Button Washing Frequency</b><br>Scrubs Per Week"},
         type: "indicator",
         mode: "gauge+number",
         gauge: {
@@ -118,9 +115,9 @@ function buildCharts(sample) {
           steps:[
                 {range: [0, 2], color: "blueviolet"},
                 {range: [2, 4], color: "aqua"},
-                {range: [4, 6], color: "chartreuse"},
+                {range: [4, 6], color: "yellow"},
                 {range: [6, 8], color: "cornflowerblue"},
-                {range: [8, 10], color: "mediumpurple"}
+                {range: [8, 10], color: "mediumvioletred"}
               ]
         }
 
@@ -128,9 +125,17 @@ function buildCharts(sample) {
     
     // 5. Create the layout for the gauge chart.
       var gaugeLayout = { 
-          width: 400,
-          height: 300
-         };
+          autosize: true,
+          annotations: [{
+            xref: 'paper',
+            yref: 'paper'
+            x: 0.5,
+            xanchor: 'center',
+            y: 0,
+            yanchor: 'center',
+            showarrow: false
+          }]
+        };
     // 6. Use Plotly to plot the gauge data and layout.
         Plotly.newPlot("gauge", gaugeData, gaugeLayout);
 
